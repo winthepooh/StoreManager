@@ -1,0 +1,4 @@
+ID:1,Name:Apple,Price:5.0,Weight:5.0
+ID:2,Name:Lays,Price:20.0,Weight:0.5
+ID:3,Name:Chair,Price:150.0
+ID:4,Name:How To Java,Price:300.0,Author:Phubhodee
