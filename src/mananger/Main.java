@@ -116,7 +116,9 @@ public class Main extends javax.swing.JFrame {
     private void btn_addbooksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_addbooksActionPerformed
 
         shelf_manager.setVisible(!shelf_manager.isVisible());
-        
+        shelf_manager.reloadInShelf();
+        shelf_manager.reloadItem();
+        shelf_manager.reloadShelf();
     }//GEN-LAST:event_btn_addbooksActionPerformed
 
     private void btn_exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_exitActionPerformed

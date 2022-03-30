@@ -75,6 +75,11 @@ public class ShelfManager extends javax.swing.JFrame {
         jLabel2.setText("Shelf Id:");
 
         btn_removeshelf.setText("Remove");
+        btn_removeshelf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_removeshelfActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Item In Shelf");
 
@@ -199,7 +204,6 @@ public class ShelfManager extends javax.swing.JFrame {
         int i_dex = list_currentitem.getSelectedIndex();
         if(index == -1 || i_dex == -1)return;
         Registry.shelfarray.get(index).item_Have.add(Registry.itemarray.get(i_dex));
-        Registry.shelfarray.get(index).item_Have_index.add(i_dex);
         reloadInShelf();
         saveShelfToFile();
     }//GEN-LAST:event_btn_addtoshelfActionPerformed
@@ -209,10 +213,17 @@ public class ShelfManager extends javax.swing.JFrame {
         int index = list_shelf.getSelectedIndex();
         if(index == -1 || i_dex == -1)return;
         Registry.shelfarray.get(index).item_Have.remove(i_dex);
-        Registry.shelfarray.get(index).item_Have_index.remove(i_dex);
         reloadInShelf();
         saveShelfToFile();
     }//GEN-LAST:event_btn_removeiteminshelfActionPerformed
+
+    private void btn_removeshelfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_removeshelfActionPerformed
+        int index = list_shelf.getSelectedIndex();
+        if(index == -1)return;
+        Registry.shelfarray.remove(index);
+        reloadShelf();
+        saveShelfToFile();
+    }//GEN-LAST:event_btn_removeshelfActionPerformed
 
     public void reloadInShelf(){
         int index = list_shelf.getSelectedIndex();

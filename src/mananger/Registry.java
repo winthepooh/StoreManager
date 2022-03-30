@@ -33,6 +33,20 @@ public class Registry {
         }catch(Exception e){}
     }
     
+        public static void saveShelfToFileExcept(int id){
+        try{
+            FileWriter w = new FileWriter("shelf.txt");
+            for(Shelf i : Registry.shelfarray){
+                w.write("Id:" + i.getId() + "/-1");
+                for(Items e : i.item_Have){
+                    if(e.getID() != id) w.write("," + e.getID());
+                }
+                w.write("\n");
+            }
+            w.close();
+        }catch(Exception e){}
+    }
+    
     public static Items getItemFromId(int id){
         for(Items i : itemarray){
             if(i.getID() == id)
@@ -42,15 +56,10 @@ public class Registry {
     }
     
     public static void removeItem(int index){
+        int i = itemarray.get(index).getID();
         itemarray.remove(index);
-        for(Shelf e : shelfarray){
-            ArrayList<Items> s = e.item_Have;
-            for(int i = 0;i < s.size();i++){
-                if(getItemFromId(s.get(i).getID()) == null){
-                    s.remove(i);
-                }
-            }
-        }
-        saveShelfToFile();
+        saveShelfToFileExcept(i);
+        Registry.shelfarray.clear();
+        Main.loadShelfFromFile();
     }
 }
